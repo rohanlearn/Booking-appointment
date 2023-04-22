@@ -4,7 +4,7 @@ const form = document.querySelector("form")
         e.preventDefault()
       }
       form.classList.add('was-validated')
-      console.log("hi")
+      
     })
     // var forum = document.querySelector('form');
 var adder = document.getElementById('add');
@@ -20,10 +20,11 @@ function addtostorage(e){
     var email = document.getElementById('email').value;
     let myobj ={      name:name,        email:email
    }
+   
    let myobj_serialized = JSON.stringify(myobj);
-
-   localStorage.setItem("myobj",myobj_serialized);
-   var object = localStorage.getItem('myobj')
+  
+   localStorage.setItem(email,myobj_serialized);
+   var object = localStorage.getItem(email)
    object = JSON.parse(object)
    var p = document.createElement("p");
    var data = document.createTextNode("Name: "+object.name+",   Email: "+object.email) 
@@ -34,14 +35,21 @@ function addtostorage(e){
    p.appendChild(data)
    p.appendChild(dltbtn)
    adder.appendChild(p);
-
+   text = p.firstChild;
+   console.log(text)
+   text = JSON.stringify(text);
+   text = text.split(" ")
+   console.log(text);
+   
  }
 
 function deletion(e){
 
- console.log(e.target.id)
+
  if (e.target.id=="delete"){
+
     var p = e.target.parentElement;
+    p.firstChild
     adder.removeChild(p);
 
  }
